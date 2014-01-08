@@ -87,7 +87,6 @@ class ChatWithFrames < Sinatra::Base
   
   post '/chat' do
     message = params[:message]
-    #Establecer el chat privado
     if message =~ /\s*\/(\w+):/
       name = $1
       sender = session['user']
@@ -115,7 +114,7 @@ class ChatWithFrames < Sinatra::Base
       @@private[@@private[sender]]= nil
       @@private[sender]= nil    
     else
-      name = $1 # esto falla
+      name = $1 
       sender = session['user']
        if ((@@private[sender] != nil))
         stream_receiver = @@clientsByName[@@private[sender]]
